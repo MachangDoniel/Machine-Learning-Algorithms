@@ -1,4 +1,4 @@
-### Linear Discriminant Analysis (LDA):
+## Linear Discriminant Analysis (LDA):
 
 <img src="images/LDA.png" alt="LDA" width="600" height="400">
 
@@ -14,7 +14,7 @@
     - https://en.wikipedia.org/wiki/Linear_discriminant_analysis
 
 ---
-### Quadratic Discriminant Analysis (QDA):
+## Quadratic Discriminant Analysis (QDA):
 
 <img src="images/QDA.png" alt="LDA" width="600" height="400">
 
@@ -30,7 +30,7 @@
     - https://www.kaggle.com/discussions/general/448328
 
 ---
-### Naive Bayes:
+## Naive Bayes:
 - **Type:** Probabilistic classifier.
 - **Approach:** Naive Bayes is based on Bayes' Theorem and assumes that the features are conditionally independent of each other given the class (this is the "naive" assumption). It calculates the probability of each class based on the input features and selects the class with the highest posterior probability.
   
@@ -66,7 +66,7 @@
     - https://scikit-learn.org/1.5/modules/naive_bayes.html
 
 ---
-### Gaussian Process Classification (GPC):
+## Gaussian Process Classification (GPC):
 - **Type:** Probabilistic, non-parametric classifier.
 - **Approach:** Gaussian Process Classification uses Gaussian processes to model the distribution of functions that map input features to output classes. It provides a flexible approach to classification by treating the output as a sample from a Gaussian process, allowing for uncertainty estimation in predictions. It uses the properties of Gaussian distributions to make predictions about the likelihood of each class given the input data.
 
@@ -98,7 +98,7 @@
     - https://www.youtube.com/watch?v=5Cqi-RAwAu8
 
 ---
-### Support Vector Machine (SVM):
+## Support Vector Machine (SVM):
 - **Type:** Supervised learning classifier.
 - **Approach:** SVM aims to find the optimal hyperplane that separates classes in a high-dimensional space. It maximizes the margin between the nearest points of the classes (support vectors) while allowing for some misclassification through a soft margin.
   
@@ -116,7 +116,7 @@
 
 ---
 
-### Artificial Neural Network (ANN):
+## Artificial Neural Network (ANN):
 - **Type:** Supervised learning model inspired by biological neural networks.
 - **Approach:** ANNs consist of interconnected layers of neurons, including an input layer, one or more hidden layers, and an output layer. They learn to map inputs to outputs by adjusting weights based on error feedback through backpropagation.
   
@@ -134,7 +134,7 @@
 
 ---
 
-### AdaBoost (Adaptive Boosting):
+## AdaBoost (Adaptive Boosting):
 - **Type:** Ensemble learning method.
 - **Approach:** AdaBoost combines multiple weak classifiers to create a strong classifier. It assigns weights to each training instance and focuses on the misclassified instances, adjusting weights iteratively to improve overall classification accuracy.
   
@@ -152,7 +152,29 @@
     - https://scikit-learn.org/dev/modules/generated/sklearn.ensemble.AdaBoostClassifier.html
 ---
 
-### Logistic Regression:
+## XGBoost (Extreme Gradient Boosting):
+- **Type:** Ensemble learning method based on gradient boosting.
+
+- **Approach:** XGBoost improves upon traditional gradient boosting by optimizing computational efficiency and model performance. It builds an ensemble of decision trees in a sequential manner, where each new tree corrects errors made by the previous ones. It employs regularization techniques to prevent overfitting.
+
+- **Assumptions:**
+  - Assumes that boosting weak learners (typically decision trees) will lead to a strong predictive model.
+  - It can handle both regression and classification problems.
+
+- **Output:** Provides predictions based on the weighted sum of the outputs of all trees in the ensemble.
+
+- **Efficiency:** Highly efficient and scalable, often faster than other boosting algorithms due to optimizations like parallel processing and tree pruning.
+
+- **Use Cases:** Widely used in competitive machine learning, Kaggle competitions, and applications such as fraud detection, risk assessment, and customer churn prediction.
+
+- **Ref:** 
+    - https://xgboost.readthedocs.io/en/latest/
+    - https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+
+
+---
+
+## Logistic Regression:
 - **Type:** Statistical method for binary classification.
 - **Approach:** Logistic regression models the probability of a binary outcome based on one or more predictor variables using the logistic function. It predicts the likelihood that an instance belongs to a particular class by estimating coefficients for the input features.
   
@@ -170,7 +192,7 @@
 
 ---
 
-### Decision Tree:
+## Decision Tree:
 - **Type:** Supervised learning model.
 - **Approach:** Decision trees split the data into subsets based on feature values, forming a tree structure where each internal node represents a decision based on a feature, and each leaf node represents a class label. It recursively partitions the data to minimize impurity (e.g., Gini impurity or entropy).
   
@@ -188,7 +210,7 @@
 
 ---
 
-### Random Forest:
+## Random Forest:
 - **Type:** Ensemble learning method based on decision trees.
 - **Approach:** Random Forest constructs multiple decision trees during training and outputs the mode of the classes (for classification) or mean prediction (for regression) of the individual trees. It introduces randomness by sampling data points and features to create diverse trees.
   
@@ -203,3 +225,48 @@
 
 - **Ref:** 
     - https://www.geeksforgeeks.org/random-forest-algorithm-in-machine-learning/
+
+---
+
+## ResNet Model
+
+ResNet, short for **Residual Network**, is a deep learning model architecture introduced by Kaiming He et al. in their 2015 paper titled “Deep Residual Learning for Image Recognition.” ResNet was designed to address the problem of vanishing gradients in very deep neural networks, which made training such models challenging.
+
+ResNet architecture won ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2015 competition.
+
+### Key Features of ResNet
+
+1. **Residual Learning**:
+   - The fundamental idea behind ResNet is the concept of residual learning, where the model learns to predict the residuals (differences) between the desired output and the input. This allows the network to focus on learning the changes rather than the entire mapping.
+   - In practice, this is implemented using **skip connections** (or shortcut connections) that bypass one or more layers. The output of these layers is added to the output of the layer further along the network, helping to alleviate the vanishing gradient problem.
+
+2. **Skip Connections**:
+   - Skip connections allow the gradient to flow through the network more easily during backpropagation. They enable the model to learn an identity mapping, making it easier to train deep networks by allowing the model to "skip" layers if they are not needed.
+   - A typical residual block in ResNet consists of two or more convolutional layers, with the input being added to the output of the block.
+
+3. **Architecture**:
+   - ResNet architectures come in various depths, such as ResNet-18, ResNet-34, ResNet-50, ResNet-101, and ResNet-152, where the numbers represent the total number of layers in the model.
+   - Deeper models, like ResNet-50 and above, use **bottleneck layers**. These layers contain a 1x1 convolution that reduces dimensionality before passing data through 3x3 convolutions, followed by another 1x1 convolution to restore dimensionality.
+
+4. **Batch Normalization**:
+   - ResNet incorporates batch normalization layers to stabilize and accelerate the training process. This helps in reducing the sensitivity of the network to the initial weights and leads to faster convergence.
+
+5. **Performance**:
+   - ResNet achieved significant improvements in performance on various computer vision tasks, including image classification, object detection, and segmentation. It won the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) in 2015, achieving a top-5 test accuracy of 96.43%.
+
+### Advantages of ResNet
+
+- **Easier Training of Deep Networks**: The architecture allows for training of much deeper networks (over 100 layers) without suffering from performance degradation.
+- **Improved Generalization**: By mitigating the vanishing gradient problem, ResNet can generalize better on unseen data.
+- **Flexibility**: The residual blocks can be easily integrated into other architectures, making them versatile for various tasks.
+
+### Conclusion
+
+ResNet has become one of the foundational models in deep learning, especially in the field of computer vision. Its innovative use of residual connections has influenced the design of many subsequent architectures, leading to the development of even deeper and more efficient models.
+
+### References
+- https://arxiv.org/abs/1512.03385
+- https://www.geeksforgeeks.org/residual-networks-resnet-deep-learning/
+- https://www.youtube.com/watch?v=woEs7UCaITo
+- https://github.com/yacineMahdid/deep-learning-model-explained/blob/main/resnet/README.md
+- https://www.youtube.com/watch?v=fvrIqFCUWV4 

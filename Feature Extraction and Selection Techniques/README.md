@@ -136,6 +136,7 @@ ICA is an advanced technique for uncovering independent signals or components fr
   - https://towardsdatascience.com/independent-component-analysis-ica-a3eba0ccec35
 
 ---
+---
 
 # Feature Selection
 
@@ -201,3 +202,63 @@ Correlation-based techniques provide an easy-to-interpret method for exploring r
 | **Handling of Noise**            | Can reduce noise by focusing on major components          | Separates noise if it forms an independent component          | Not designed to handle noise directly, but can identify noisy relationships |
 | **Use in Machine Learning**      | Preprocessing for dimensionality reduction and feature extraction | Feature extraction and signal denoising                      | Preprocessing for feature selection and multicollinearity reduction |
 | **Common Algorithms or Techniques** | Eigen decomposition, singular value decomposition (SVD)   | FastICA algorithm                                             | Pearson correlation, Spearman's rank, Kendall's Tau       |
+
+---
+
+## Recursive Feature Elimination (RFE)
+
+### Introduction
+**Recursive Feature Elimination (RFE)** is a feature selection technique that recursively removes the least important features from the dataset, aiming to find the subset of features that contribute the most to model performance. RFE works by ranking features based on their importance in a machine learning model and eliminates the least important feature(s) at each iteration.
+
+### How RFE Works
+1. **Train a model**: RFE starts by training a model (e.g., decision trees, SVM) on the entire dataset.
+2. **Rank features**: The model ranks features based on their importance (e.g., using coefficients or feature importance scores).
+3. **Eliminate features**: The least important feature(s) are eliminated.
+4. **Recursion**: The process is repeated recursively, eliminating features until the desired number of features is reached.
+
+### Advantages of RFE
+- **Improves model performance**: By selecting only the most important features, RFE can improve model efficiency and accuracy.
+- **Reduces overfitting**: Eliminating irrelevant features helps reduce overfitting and makes the model more generalizable.
+- **Feature importance**: RFE gives insight into which features are most relevant for a given predictive model.
+
+### Disadvantages of RFE
+- **Computational cost**: RFE can be computationally expensive, especially for large datasets with many features, as it retrains the model multiple times.
+- **Dependent on base model**: The results depend heavily on the performance and nature of the base model used for feature ranking.
+
+### Applications of RFE
+- **Feature selection**: RFE is widely used to select relevant features for various machine learning algorithms like decision trees, SVMs, or logistic regression.
+- **Improving interpretability**: RFE can reduce the number of features, making the model more interpretable.
+
+### Steps in RFE
+1. **Fit the model**: Fit the base model on the entire dataset.
+2. **Rank the features**: Rank the features based on importance.
+3. **Eliminate least important features**: Recursively eliminate features with the lowest importance score.
+4. **Finalize selected features**: Continue until the desired number of features is selected.
+
+---
+
+## Comparison of PCA, ICA, Correlation-Based Techniques, and RFE
+
+| **Feature**                     | **PCA (Principal Component Analysis)**                    | **ICA (Independent Component Analysis)**                     | **Correlation-Based Techniques**                          | **RFE (Recursive Feature Elimination)**                   |
+|----------------------------------|-----------------------------------------------------------|--------------------------------------------------------------|-----------------------------------------------------------|------------------------------------------------------------|
+| **Objective**                    | Reduce dimensionality while preserving maximum variance   | Find statistically independent components from mixed signals  | Measure strength and direction of relationships between variables | Select the most important features based on model performance |
+| **Feature Type**                 | **Feature Extraction**                                    | **Feature Extraction**                                       | **Feature Selection**                                      | **Feature Selection**                                       |
+| **Components**                   | Principal components that are uncorrelated                | Independent components that are statistically independent     | Correlated or uncorrelated features based on correlation coefficients | Ranked features based on importance to model performance    |
+| **Method**                       | Eigenvectors and eigenvalues of covariance matrix         | Maximizes independence between components                     | Pearson, Spearman, Kendall correlation coefficients        | Recursive elimination of least important features           |
+| **Type of Relationship**         | Uncorrelated components                                   | Statistically independent components                          | Measures linear or monotonic relationships                 | Model-based relationship (importance determined by model)   |
+| **Orthogonality**                | Principal components are orthogonal (uncorrelated)        | Independent components are not necessarily orthogonal         | Not focused on orthogonality but on strength of association | Not focused on orthogonality, focuses on feature importance |
+| **Variance**                     | Captures maximum variance in the first few components     | Focuses on independence, may not capture maximum variance     | No direct focus on variance, measures association strength | Selects features that contribute most to model variance     |
+| **Main Application**             | Dimensionality reduction and feature extraction           | Blind source separation and signal processing                 | Feature selection, multicollinearity reduction, data analysis | Feature selection for predictive modeling                   |
+| **Data Transformation**          | Projects data onto new axes (principal components)        | Separates mixed signals into independent components           | Measures relationships between original features           | Removes less relevant features from dataset                 |
+| **Steps**                        | Standardization, covariance matrix, eigen decomposition   | Centering, whitening, maximization of independence            | Compute correlation matrix, evaluate relationships         | Train model, rank features, recursively eliminate features  |
+| **Output**                       | Reduced number of principal components                    | Independent components                                        | Correlation coefficients between pairs of variables        | A reduced subset of the most important features             |
+| **Handling of Noise**            | Can reduce noise by focusing on major components          | Separates noise if it forms an independent component          | Not designed to handle noise directly, but can identify noisy relationships | May eliminate noisy or irrelevant features                  |
+| **Use in Machine Learning**      | Preprocessing for dimensionality reduction and feature extraction | Feature extraction and signal denoising                      | Preprocessing for feature selection and multicollinearity reduction | Feature selection for improving model performance           |
+| **Common Algorithms or Techniques** | Eigen decomposition, singular value decomposition (SVD)   | FastICA algorithm                                             | Pearson correlation, Spearman's rank, Kendall's Tau        | Decision trees, SVM, logistic regression                    |
+
+---
+
+### Conclusion
+Each technique—PCA, ICA, correlation-based methods, and RFE—has its strengths depending on the context:
+- **PCA** is useful for dimensionality reduction.
+- **ICA** excels in blind 
